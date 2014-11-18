@@ -1,0 +1,21 @@
+<table class="table table-bordered">
+<tr>
+	<td>
+	    <b>name:</b>
+	</td>
+	<td>
+	    <b>shape:</b> 
+	</td>
+</tr>
+<%= render @fields %>
+</table>
+<div id="map">
+</div>
+<script>
+	$( function(){
+	var map = drawMap();
+	<% @fields.each do |f| %>
+		L.multiPolygon(<%= RGeo::GeoJSON.encode(f.shape)["coordinates"] %>).addTo(map);
+	<% end %>
+	});
+</script>

@@ -1,0 +1,10 @@
+<h1> <%= @field.name %> </h1>
+
+<div id="map"></div>
+
+<script>
+$(function(){
+	var map = drawMap(true);
+	L.multiPolygon(<%= RGeo::GeoJSON.encode(@field.shape)["coordinates"] %>).addTo(map);
+});
+</script>
